@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+    <mapper namespace="main.java.com.hhy.mapper.UserMapper">
+        <insert id="add" parameterType="User" >
+            insert into User (id, userName,password ,realName) values (#{id},#{userName},#{password},#{realName})   
+        </insert>
+         
+        <delete id="delete" parameterType="User" >
+            delete from User where id= #{id}  
+        </delete>
+         
+        <select id="get" parameterType="Integer" resultType="User">
+            select * from   User  where id= #{id}   
+        </select>
+   		
+        <update id="update" parameterType="User" >
+            update User set userName=#{userName} where id=#{id}   
+        </update>
+        <select id="list" resultType="User">
+            select * from   User     
+        </select>  
+         <select id="count" resultType="Integer">
+            select count(*) from   User     
+        </select>    
+         <select id="login" resultType="User">
+            select * from   User where userName=#{0} and password=#{1}  limit 1
+        </select>  
+        <select id="getUserByName" resultType="User">
+            select * from   User  where userName= #{userName} 
+        </select>  
+        <select id="getUserByID" parameterType="String" resultType="User">
+            select * from   User  where id= #{id}   limit 1 
+        </select>
+    </mapper>
+    

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans 
+      xmlns="http://www.springframework.org/schema/beans"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	  xmlns:mvc="http://www.springframework.org/schema/mvc"
+	  xmlns:context="http://www.springframework.org/schema/context"
+      xsi:schemaLocation="
+	  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+		
+	<!--1.开启Springioc 自动扫描注解包  -->
+  	<context:component-scan base-package="main.java.com.hhy.controller"/>
+   	<context:component-scan base-package="main.java.com.hhy.mapper"/>
+   	<context:component-scan base-package="main.java.com.hhy.service"/> 	
+   	<context:component-scan base-package="main.java.com.hhy.service.impl"/> 	
+   	<context:component-scan base-package="main.java.com.hhy.pojo"/>
+  	<!--2. 开启注解 -->
+	<mvc:annotation-driven />
+  	
+  	<!--3.配置视图解析器  -->
+  	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+  		<property name="prefix" value="/WEB-INF/jsp/"></property>
+  		<property name="suffix" value=".jsp"></property>
+  	</bean>
+  	
+  	<!--4.注解映射器（可省）  -->
+<!--   	<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping"></bean> -->
+  	
+ 
+  	<!--5.配置适配器（不需时可省）  -->
+<!--   	<bean class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">
+  		在业务方法的返回值和权限之间使用@ResponseBody注解表示返回值对象需要转成JSON文本 
+  		<property name="messageConverters">
+			<list>
+				<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>
+			</list>
+		</property>
+  	</bean> -->
+  	
+  	 <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  <property name="maxUploadSize">   
+        <value>9223372036854775807</value>  
+        </property>  
+        <property name="maxInMemorySize"> 
+          <value>4096</value>  
+        </property> 
+    </bean>
+
+</beans>     

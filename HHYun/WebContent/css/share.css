@@ -1,0 +1,906 @@
+@charset "utf-8";
+
+.share_all
+{
+	height:100%;
+	/*background:url(/networkdisk/img/back4.jpg) !important; */
+	background-color:#EFF4F8;
+	font-family: Lato;
+	margin: 0px;
+}
+.share_content
+{
+	margin-left:195px;
+	height: 600px;
+	width:1000px;
+}
+.share_content_left
+{
+	float: left;
+	border-radius: 3px;
+	height: 590px;
+	width:280px;
+	background-color: white;
+}
+.share_content_right
+{
+	float:right;
+	border-radius: 3px;	
+	background-color: white;
+	height: 590px;
+	width: 710px;
+	margin-left: 1px;
+}
+.moud{
+	width:280px;
+	padding: 0;
+	margin: 0;
+	height: 50px;
+}
+#share_tab{
+	width:280px;
+	padding: 0;
+	
+}
+#share_tab li{
+	display: block;
+	float: left;
+	list-style: none;
+	text-align: center;
+	width: 140px;	
+	height: 50px;
+	line-height: 50px;
+	cursor: pointer;
+	border-bottom: 1px solid lightgrey;
+}
+#share_tab li:first-child{
+	border-right: 1px solid darkgray;
+	
+}
+#share_tab li.active a{
+	text-decoration: none;
+    color: black;
+}
+
+#share_tab a{
+	display: block;
+	text-decoration: none;
+	color:darkgray;
+}
+#share_tab li a:hover
+{
+	color: black;
+}
+#share_content{
+	height: 490px;
+}
+#session_content
+{
+	overflow-y:auto;
+	overflow-x: hidden;
+	text-align: left;
+
+}
+#session_content a
+{
+	text-decoration: none;
+	cursor: pointer;	
+}
+.session_user
+{
+	padding-left: 8px;
+	
+}
+.session_time
+{
+	padding-left:65px;
+	color: gray;
+}
+.session_other
+{
+	padding-left:8px;
+	color: black;
+}
+#user_content
+{
+	height:490px;	
+}
+#user_content a
+{
+	text-decoration: none;
+	color: black;
+	cursor: pointer;
+}
+.user_table,.session_table
+{	
+	margin-left:0px;
+	width: 280px;		
+	cursor: pointer;
+	text-align: left;
+	border-collapse:collapse;
+}
+.user_table tr,.session_table tr{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	font-size:14px;
+	font-family:"微软雅黑";
+	border-bottom: 1px solid #E6E6FA;
+	position: relative;
+}
+.user_table tr td,.session_table tr td{
+	position: relative;
+}
+.user_table td:first-child ,.session_table td:first-child{
+	width:60px;
+	padding-left:5px;
+}
+.user_table tr:not(:first-child):hover{
+	background:rgb(229, 245, 255);
+}
+.session_table tr:hover{
+	background:rgb(229, 245, 255);
+}
+.user_name 
+{
+ color:black;
+ padding-right: 130px;
+}
+.session_bottom
+{
+	border-top: 1px solid gainsboro;
+	height: 40px;
+	
+}
+.session_bottom ul
+{
+	list-style: none;
+}
+.session_bottom ul li
+{
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	padding-right: 15px;
+	
+}
+.session_bottom ul li a
+{
+	text-decoration: none;
+	color: black;
+	outline: none;
+	cursor: pointer;
+}
+.session_bottom ul li a:hover
+{
+	color: gray;
+}
+#default_a
+{
+	height: 100px;
+	width: 150px;
+	margin-top: 70px;
+	cursor: pointer;
+}
+
+#default_a  button
+{
+	height: 50px;
+	width: 150px;
+	background-color: rgb(75, 106, 108);
+	color: white;
+	border: 0;
+	border-radius: 2px;
+	outline: none;
+	cursor: pointer;
+	
+}
+#default_a a:hover
+{
+	opacity: 0.9;
+}
+.friend_info
+{
+	
+    margin-top: 40px;
+    text-align: center;
+    
+    
+}
+.friend_touxiang img
+{
+	height: 120px;
+	width: 120px;
+}
+.friend_name
+{
+	border-bottom: 1px dotted gray;
+}
+
+.option_one
+{
+	padding-top: 10px;
+}
+
+#active_button 
+{
+ background-color: black;
+ cursor: pointer;
+}
+.option_two a:hover
+{
+	opacity: 0.8;
+}
+.option_two button
+{
+	border: 0;
+	height: 35px;
+	width: 250px;
+     background-color: gray;
+	border-radius: 3px;
+	color:white;
+	margin-top: 20px;
+	outline: none;
+	cursor: pointer;
+}
+
+.table_new_friend
+{
+	border-bottom: 1px solid lightgray;
+	height: 60px;
+	width: 280px;
+}
+.friend_user img
+{
+	height: 46px;
+	width: 55px;
+	padding-left: 8px;
+	
+}
+.new_friend_name
+{
+	color: gray;
+}
+
+.new_friend_header
+{
+	height: 60px;
+	text-align: center;
+	background-color: gray;
+	color: white;
+	line-height: 60px;
+	width:100%;
+}
+.new_friend_listitem
+{
+	margin-top: 30px;
+	height: 70px;
+	background-color: gray;
+	
+}
+.listitem_left
+{
+	float: left;
+	margin-top: 10px;
+	margin-left: 10px;
+	padding-left: 5px;
+}
+.listitem_right
+{
+	float: right;
+	padding-right: 20px;
+	text-align: center;
+	line-height: 70px;
+	cursor: pointer;
+}
+
+.listitem_right button
+{
+	border:0;
+	height: 30px;
+	width: 100px;
+	background-color: ;
+	margin-right: 20px;
+	border-radius: 3px;
+	text-align: center;
+	outline: none;
+	cursor: pointer;
+	
+}
+.listitem_right a button:hover
+{
+	background-color: black;
+	color: white;
+}
+.listitem_right span
+{
+	padding-right: 30px;
+	padding-left: 10px;
+}
+
+.modal-body_item 
+{
+	margin-left: 20px;
+	
+}
+.modal-body_item  input
+{
+	width: 290px;
+	border-radius: 3px;
+	height: 30px;
+	border: 1px solid #cccccc; 
+    
+}
+.modal-body_item  button
+{
+	width:50px;
+	border-radius: 3px;
+	height: 30px;
+	background-color: gray;
+	margin-left: 4px;
+	color: white;
+	border: 1px solid #cccccc; 
+	outline: none;
+    
+}
+.search_result
+{
+	margin-top: 20px;
+	margin-left:20px ;
+}
+.result
+{
+	margin-top: 10px;
+	padding: 10px;
+    font-size: 14px;
+	background-color: rgb(247, 247, 247);
+	color: #000;
+}
+.btn_add 
+{
+	border: 1px solid #cccccc; 
+	outline: none;
+	background-color: gray;
+	color: white;
+	border-radius: 3px;
+	height: 30px;
+		
+}
+
+.modal-footer
+{
+	text-align: center;
+}
+.confirm
+{
+	border: 1px solid #cccccc; 
+	outline: none;
+	background-color: gray;
+	color: white;
+	border-radius: 3px;
+	height: 30px;
+		
+}
+.cancle
+{
+	border: 1px solid #cccccc; 
+	outline: none;
+	background-color: gray;
+	color: white;
+	border-radius: 3px;
+	height: 30px;
+		
+}
+.b1{
+	width:410px;
+	height:30px;
+}
+.bn{
+	display:inline-block;
+	width:72px;
+	height:30px;
+	line-height:30px;
+	border-radius:3px;
+	text-align:center;
+	font-size:15px;
+	background:rgb(78, 151, 255);
+	color:#fff;	
+	cursor:pointer;
+}
+.bn:hover{
+	color:#fff;
+	background:rgb(78, 141, 255);
+	text-decoration:none;
+}
+.bn1{
+	display:block;
+	width:100px;
+	height:32px;
+	line-height:32px;
+	border-radius:3px;
+	border:none;
+	text-align:center;
+	font-size:15px;
+	background:rgb(78, 151, 255);
+	color:#fff;	
+	cursor:pointer;
+	margin:0px auto;
+}
+.bn1:hover{
+	color:#fff;
+	background:rgb(78, 141, 255);
+	text-decoration:none;
+}
+.friends{
+	width:100%;
+	height: 100px;
+	display:none;
+	background:rgb(247, 247, 247);
+}
+.friends img{
+	margin:5px;
+}
+.friends a{
+	color:#333333;
+	font-size:18px;
+}
+.friends a:hover{
+	text-decoration: none;
+}
+.all-main-content{
+	font-family: 宋体,Arial,sans-serif;
+	color: #666;
+}
+.all-main-content .user-info-mainbox {
+    position: absolute;
+    z-index: 1;
+    top:23%;
+    left: 43%;
+}
+.user-info-main {
+    width: 500px;
+    text-align:center;
+    margin: 0 auto;
+}
+.user-info-summary {
+    border-bottom: 1px dashed #d5d5d5;
+}
+.user-info-summary .userName {
+    font: 700 26px/60px 'microsoft YaHei';
+}
+.user-info-detail {
+    margin-top: 20px;
+    line-height: 30px;
+    overflow: hidden;
+    font-size: 18px;
+    height: 110px;
+}
+.user-info-detail .title, .user-info-detail .text {
+    display: inline-block;
+    text-align: left;
+}
+.user-info-detail p {
+    height: 30px;
+    max-width: 400px;
+    word-break: break-all;
+    overflow: hidden;
+}
+.user-info-detail p.noText a{
+    color: #afafaf;
+}
+.user-info-main .user-info-button {
+    margin-top: 0px;
+}
+.user-info-button .select-file{
+    background: #0088f9;
+    border-color: #0088f9;
+    color: #fff;
+}
+.user-info-button a{
+    width: 335px;
+    height: 35px;
+    line-height: 35px;
+    border: 1px solid #e2e2e2;
+    font-size: 14px;
+    display: inline-block;
+    margin-top: 10px;
+    text-decoration: none;
+    border-radius: 3px;
+    color: #000;
+    overflow: hidden;
+}
+.user-info-button .select-file:hover{
+    background: #2997f2;
+    border-color: #2997f2;
+    color: #fff;
+}
+.user-info-button a:hover {
+    color: #06c;
+    background: #f6f5f5;
+    text-decoration: none;
+}
+.user_table tr.active,.session_table tr.active{
+	background: rgb(187, 165, 115);
+    color: #fff;
+}
+.user_table tr.active:hover,.session_table tr.active:hover{
+	background: rgb(187, 165, 115);
+	color: #fff;
+}
+.user_table tr.active p{
+	color: #fff;
+}
+.user-name {
+    float: left;
+    line-height:18px;
+    color: #000;
+    font-size: 14px;
+    width: 124px;
+    height:18px;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.last-time {
+    float: right;
+    color: #999;
+    font-size: 12px;
+    line-height:18px;
+    width: 68px;
+    height:18px;
+    text-align: right;
+    margin: 0px;
+    margin-right: 10px;
+}
+.new-session {
+    float: left;
+    font-size: 12px;
+    width: 188px;
+    height:28px;
+    margin: 0px;
+    line-height:28px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    color: #B6B6B6;
+}
+.list-main-title {
+	text-align:center;
+    height: 60px;
+    line-height: 60px;
+    background: #f5f5f5;
+    font-size: 16px;
+    font-weight: 700;
+}
+.user-list-main .list-main-content {
+    margin: 10px;
+    padding: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    position: relative;
+    z-index: 1;
+}
+.friend-recom-list .user-module {
+    width: 100%;
+    height: 75px;
+    display: block;
+    float: none;
+    background: #fafafa;
+    border: 0;
+    padding: 15px;
+    margin: 5px 0 15px;
+    cursor: default;
+    position: relative;
+	z-index: 1;
+}
+.friend-recom-list .user-module dt, .friend-recom-list .user-module dd {
+    width: 70px;
+    height: 45px;
+    float: left;
+    overflow: hidden;
+    margin: 0px;
+}
+.friend-recom-list .user-module dd {
+    width: 280px;
+}
+.friend-recom-list .user-name {
+    height: 22px;
+    width: 300px;
+    line-height: 22px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 12px;
+    overflow: hidden;
+	text-overflow: ellipsis;
+}
+.friend-recom-list .user-name-desc {
+    font-weight: 400;
+}
+.friend-recom-list p{
+    margin:0px;
+}
+.friend-recom-list .shareFile, .friend-recom-list .addFriend {
+    background: #fff;
+    border: 1px solid #e2e2e2;
+    border-radius: 3px;
+    color: #000;
+    width: 90px;
+    height: 30px;
+    line-height: 30px;
+    margin: 6px 0 0 20px;
+    text-decoration: none;
+    display: inline-block;
+    text-align: center;
+}
+.friend-recom-list .addFriend {
+    background: #008bf5;
+    border-color: #1073ce;
+    color: #fff;
+}
+.friend-recom-list .addFriend:hover {
+    background: #2997f2;
+}
+.friend-recom-list .added, 
+.friend-recom-list .added:hover, 
+.friend-recom-list .added:active {
+    background: #FAFAFA;
+    cursor: default;
+    border: 0;
+    color: #8C8C8C;
+}
+.new-num-session {
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    line-height: 15px;
+    background: #f13129;
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    top: 0;
+    left:-20px;
+    display: none;
+}
+.module-content-all {
+    background: #FFF;
+    margin: 0;
+    width: 710px;
+    height: 590px;
+    overflow:hidden;
+    vertical-align: top;
+    display: inline-block;
+    position: relative;
+    border-radius: 3px;	
+}
+.all-main-content{
+	height: 530px;
+}
+.module-content-all .header{
+    display: block;
+    height: 60px;
+    width: 100%;
+    padding: 12px 0;
+    line-height: 36px;
+    background: #F5F5F5;
+    color: #666;
+    text-align: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+.module-content-all .main-content {
+    width: 200%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    z-index: 3;
+}
+.module-conversation {
+    width: 50%;
+    float: left;
+    position: relative;
+}
+.module-conversation .all-content {
+    overflow: auto;
+    height: 475px;
+}
+.module-conversation .show-send {
+    display: block;
+}
+.send-message {
+    padding: 12px;
+    width: 100%;
+    left: 0;
+    bottom: -56px;
+    height:56px;
+    background: #F5F5F5;
+    position: absolute;
+    transition: bottom .5s;
+    display: block;
+    z-index: 8;
+}
+.module-conversation .send-message .select-file {
+    vertical-align: top;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 3px;
+    width: 111px;
+    background: rgb(152, 92, 22);
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+}
+.module-conversation .send-message .message {
+    vertical-align: top;
+    margin-left: 7px;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+}
+.module-conversation .send-message textarea {
+    vertical-align: top;
+    resize: none;
+    outline: 0;
+    display: inline-block;
+    padding: 5px;
+    border-radius: 3px;
+    width: 440px;
+    height: 32px;
+    line-height: 20px;
+    border: #D3D3D3 1px solid;
+    overflow: auto;
+    font: 12px/20px tahoma,arial,"宋体";
+    word-break: break-all;
+}
+.module-conversation .personals{
+	width:100%;
+	padding:0px;
+}
+.module-conversation .all-content .empty {
+    color: #ccc;
+    text-align: center;
+    padding-top: 50px;
+}
+.module-conversation .time {
+    display: block;
+    width: 100%;
+    text-align:center;
+    height: 30px;
+    line-height: 46px;
+    color: #CCC;
+}
+.module-conversation ul li div{
+	padding:0px;
+}
+.module-conversation .time-content {
+    display: inline-block;
+    padding: 0 25px;
+    margin: 0 auto;
+    position: relative;
+    height: 16px;
+    text-align: center;
+    line-height: 33px;
+}
+.module-conversation .date-time {
+    background-color: #FFF;
+    padding: 0 3px;
+}
+.module-conversation li.other,
+.module-conversation li.me{
+    padding: 10px 15px;
+    overflow: hidden;
+    width:100%;
+    opacity: 1;
+    margin:0px;
+    position: relative;
+}
+.module-conversation .head-arrow {
+    width: 52px;
+    height: 44px;
+    float: left;   
+    transition: opacity .4s .4s;
+    opacity: 1;
+    position: relative;
+}
+
+.module-conversation .head-arrow .head img{
+    height: 37px;
+    width: 37px;
+    float: left;
+}
+.module-conversation li.me .head-arrow .head {
+    float: right;
+}
+.module-conversation li.me .head-arrow{
+	float: right;
+}
+.module-conversation .head-arrow .arrow {
+    margin-top: 11px;
+    height: 14px;
+    width: 14px;
+    float: right;
+}
+.module-conversation li.me .arrow {
+    float: left;
+}
+.module-conversation .arrow .left {
+    border-color: transparent rgb(188, 166, 116) transparent transparent;
+}
+.module-conversation li.me .arrow .right {
+    display: block;
+    border-color: transparent transparent transparent rgb(65, 122, 151);
+}
+.module-conversation .content {
+    word-break: break-all;
+    max-width: 50%;
+    min-width: 20px;
+    padding: 8px 6px;
+    float: left;
+    line-height: 20px;
+    font: 13px tahoma,arial,"宋体";
+    text-align: left;
+    color: #fff;
+    background-color: rgb(188, 166, 116);
+    position: relative;
+    transition: opacity .4s .6s;
+    opacity: 1;
+    z-index: 1;
+}
+.module-conversation li.me .content {
+    background-color: rgb(65, 122, 151);
+    float: right;
+    font: 13px tahoma,arial,"宋体";
+}
+.module-conversation .content .text {
+    min-height: 20px;
+    line-height: 20px;
+    margin: 0px;
+    padding: 0px;
+}
+.module-conversation .arrow .left,
+.module-conversation .arrow .right{
+    display: block;
+    height: 0;
+    width: 0;
+    font-size: 0;
+    line-height: 0;
+    border-width: 7px;
+    border-style: solid;
+}
+li {
+    list-style: none;
+}
+.module-conversation .send-message .icon-smile {
+    vertical-align: top;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    background: url(/networkdisk/img/saveAndDownload.png) no-repeat -181px 5px;
+    width: 22px;
+    margin: 0 5px;
+    cursor: pointer;
+}
+.module-conversation .send-message .icon-smile:hover {
+    background-position: -203px 5px;
+}
+.module-conversation .send-message .send-button {
+    vertical-align: top;
+    display: inline-block;
+    height: 32px;
+    line-height: 32px;
+    text-align: center;
+    border-radius: 3px;
+    width: 74px;
+    background: rgb(152, 92, 22);
+    color: #FFF;
+    font-weight: 700;
+    cursor: pointer;
+    font-size: 14px;
+}
+.module-conversation .send-message .select-file:hover,
+.module-conversation .send-message .send-button:hover{
+	opacity: 0.9;
+}

@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.hhy.mapper.ShareMapper">
+  <resultMap id="BaseResultMap" type="main.java.com.hhy.pojo.Share">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="userID" jdbcType="VARCHAR" property="userID" />
+    <result column="magID" jdbcType="VARCHAR" property="magID" />
+    <result column="pwd" jdbcType="CHAR" property="pwd" />
+    <result column="shareDate" jdbcType="TIMESTAMP" property="shareDate" />
+    <result column="remainTime" jdbcType="INTEGER" property="remainTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userID, magID, pwd, shareDate, remainTime
+  </sql>
+  <!-- 根据magID获取 -->
+  <select id="selectByMagID" parameterType="java.lang.String" resultType="Share">
+    select * from share
+    where magID = #{magID,jdbcType=VARCHAR} limit 1
+  </select>
+   <!-- 根据magID获取 -->
+  <select id="checkpwd" parameterType="java.lang.String" resultType="Share">
+    select * from share
+    where magID = #{0} and pwd=#{1} limit 1
+  </select>
+     <!-- 根据userID获取 -->
+  <select id="getMyShareList" parameterType="java.lang.String" resultType="Share">
+    select * from share
+    where userID = #{0}
+  </select>
+    
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from share
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from share
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="main.java.com.hhy.pojo.Share">
+    insert into share (id, userID, magID, 
+      pwd, shareDate, remainTime
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userID,jdbcType=VARCHAR}, #{magID,jdbcType=VARCHAR}, 
+      #{pwd,jdbcType=CHAR}, #{shareDate,jdbcType=TIMESTAMP}, #{remainTime,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.hhy.pojo.Share">
+    insert into share
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userID != null">
+        userID,
+      </if>
+      <if test="magID != null">
+        magID,
+      </if>
+      <if test="pwd != null">
+        pwd,
+      </if>
+      <if test="shareDate != null">
+        shareDate,
+      </if>
+      <if test="remainTime != null">
+        remainTime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userID != null">
+        #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="magID != null">
+        #{magID,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        #{pwd,jdbcType=CHAR},
+      </if>
+      <if test="shareDate != null">
+        #{shareDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remainTime != null">
+        #{remainTime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.hhy.pojo.Share">
+    update share
+    <set>
+      <if test="userID != null">
+        userID = #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="magID != null">
+        magID = #{magID,jdbcType=VARCHAR},
+      </if>
+      <if test="pwd != null">
+        pwd = #{pwd,jdbcType=CHAR},
+      </if>
+      <if test="shareDate != null">
+        shareDate = #{shareDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remainTime != null">
+        remainTime = #{remainTime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.hhy.pojo.Share">
+    update share
+    set userID = #{userID,jdbcType=VARCHAR},
+      magID = #{magID,jdbcType=VARCHAR},
+      pwd = #{pwd,jdbcType=CHAR},
+      shareDate = #{shareDate,jdbcType=TIMESTAMP},
+      remainTime = #{remainTime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

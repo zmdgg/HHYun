@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.hhy.mapper.FileMapper">
+  <resultMap id="BaseResultMap" type="main.java.com.hhy.pojo.MyFile">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="fileName" jdbcType="VARCHAR" property="fileName" />
+    <result column="fileSuffix" jdbcType="VARCHAR" property="fileSuffix" />
+    <result column="fileTypeFlag" jdbcType="INTEGER" property="fileTypeFlag" />
+    <result column="userID" jdbcType="VARCHAR" property="userID" />
+    <result column="filePath" jdbcType="VARCHAR" property="filePath" />
+    <result column="fileSize" jdbcType="BIGINT" property="fileSize" />
+    <result column="floorNum" jdbcType="INTEGER" property="floorNum" />
+    <result column="folderID" jdbcType="VARCHAR" property="folderID" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+    <result column="md5" jdbcType="VARCHAR" property="md5" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, fileName, fileSuffix, fileTypeFlag, userID, filePath, fileSize, floorNum, folderID, 
+    updateDate, isDelete,md5
+  </sql>
+  <!-- 获得文件列表,按名字排序 -->
+  	<select id="getFileList" resultType="MyFile">
+        select * from myfile where isDelete=#{1} and folderID=#{0} and userID=#{2} order by fileName
+	</select> 
+	  <!-- 获得文件列表,按名字排序 -->
+  	<select id="getFolderNextFile" resultType="MyFile">
+        select * from myfile where folderID=#{0} and isDelete="0" order by fileName
+	</select> 
+  <!-- 文件放入回收站 -->
+  <update id="layFileRecycle" parameterType="main.java.com.hhy.pojo.MyFile">
+    update myfile
+    set isDelete = "1"
+    where id = #{0}
+  </update>
+  <!-- 文件放入回收站 -->
+  <update id="moveFile" parameterType="main.java.com.hhy.pojo.MyFile">
+    update myfile
+    set folderID = #{1}
+    where id = #{0}
+  </update>
+   <!-- 文件重命名 -->
+  <update id="reName" parameterType="main.java.com.hhy.pojo.MyFile">
+    update myfile
+    set fileName = #{1}
+    where id = #{0}
+  </update>
+   <!--文件批量放入回收站 -->
+  <update id="batchLayFile" parameterType="map">
+    update myfile set isDelete = #{file_deletesign} where id in
+		<foreach collection="list" index="index" item="file_id" open="(" separator="," close=")" >    
+            #{file_id}    
+        </foreach>  
+  </update>
+   <!-- 根据md5查询文件 -->
+  	<select id="getFileByMD5" resultType="MyFile">
+        select * from myfile where md5=#{0} limit 1
+	</select> 
+	<!-- 根据文件夹ID查找文件ID -->
+	<select id="findFileIDByFolderID" parameterType="map" resultType="String">
+		select id from myfile where
+			folderID =#{folderID}
+		and isDelete =#{file_deletesign}
+	</select>
+<!-- 获得文件列表,根据是否在回收站-->
+  	<select id="getFileListByIsDelete" resultType="MyFile">
+        select * from myfile where isDelete=#{0} and userID=#{1}
+	</select> 
+	<!-- 获得文件 根据是否在回收站-->
+  	<select id="getFileByIsDelete" resultType="MyFile">
+        select * from myfile where isDelete=#{0} and id=#{1} limit 1
+	</select> 
+  <!-- 文件放入回收站 -->
+  <update id="updateIsDelete" parameterType="MyFile">
+    update myfile
+    set isDelete = #{1}
+    where id = #{0}
+  </update>
+  
+    <select id="getFileByIDAndState" resultType="MyFile">
+    select * from  myfile where id = #{0} and isDelete=#{1} limit 1
+  </select>
+  <!-- 根据条件查找文件 -->
+	<select id="findAllByUser" parameterType="map" resultType="MyFile">
+		select * from myfile
+		<where>
+			<if test="file_uid != null">
+				and userID = #{file_uid}
+			</if>
+			<if test="file_name != null">
+				and fileName = #{file_name}
+			</if>
+			<if test="file_catid == null">
+				and folderID = ''
+			</if>
+			<if test="file_catid != null">
+				and folderID =#{file_catid}
+			</if>
+			<if test="file_deletesign != null">
+				and isDelete =#{file_deletesign}
+			</if>
+		</where>
+			
+	</select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from myfile
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from myfile
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="main.java.com.hhy.pojo.MyFile">
+    insert into myfile (id, fileName, fileSuffix, 
+      fileTypeFlag, userID, filePath, 
+      fileSize, floorNum, folderID, 
+      updateDate, isDelete,md5)
+    values (#{id,jdbcType=VARCHAR}, #{fileName,jdbcType=VARCHAR}, #{fileSuffix,jdbcType=VARCHAR}, 
+      #{fileTypeFlag,jdbcType=INTEGER}, #{userID,jdbcType=VARCHAR}, #{filePath,jdbcType=VARCHAR}, 
+      #{fileSize,jdbcType=BIGINT}, #{floorNum,jdbcType=INTEGER}, #{folderID,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{isDelete,jdbcType=INTEGER},#{md5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.hhy.pojo.MyFile">
+    insert into myfile
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="fileName != null">
+        fileName,
+      </if>
+      <if test="fileSuffix != null">
+        fileSuffix,
+      </if>
+      <if test="fileTypeFlag != null">
+        fileTypeFlag,
+      </if>
+      <if test="userID != null">
+        userID,
+      </if>
+      <if test="filePath != null">
+        filePath,
+      </if>
+      <if test="fileSize != null">
+        fileSize,
+      </if>
+      <if test="floorNum != null">
+        floorNum,
+      </if>
+      <if test="folderID != null">
+        folderID,
+      </if>
+      <if test="updateDate != null">
+        updateDate,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+        <if test="md5 != null">
+        md5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="fileName != null">
+        #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSuffix != null">
+        #{fileSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeFlag != null">
+        #{fileTypeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="userID != null">
+        #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="floorNum != null">
+        #{floorNum,jdbcType=INTEGER},
+      </if>
+      <if test="folderID != null">
+        #{folderID,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+       <if test="md5 != null">
+        #{md5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.hhy.pojo.MyFile">
+    update myfile
+    <set>
+      <if test="fileName != null">
+        fileName = #{fileName,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSuffix != null">
+        fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
+      </if>
+      <if test="fileTypeFlag != null">
+        fileTypeFlag = #{fileTypeFlag,jdbcType=INTEGER},
+      </if>
+      <if test="userID != null">
+        userID = #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="filePath != null">
+        filePath = #{filePath,jdbcType=VARCHAR},
+      </if>
+      <if test="fileSize != null">
+        fileSize = #{fileSize,jdbcType=BIGINT},
+      </if>
+      <if test="floorNum != null">
+        floorNum = #{floorNum,jdbcType=INTEGER},
+      </if>
+      <if test="folderID != null">
+        folderID = #{folderID,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+       <if test="md5 != null">
+       	md5 = #{md5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.hhy.pojo.MyFile">
+    update myfile
+    set fileName = #{fileName,jdbcType=VARCHAR},
+      fileSuffix = #{fileSuffix,jdbcType=VARCHAR},
+      fileTypeFlag = #{fileTypeFlag,jdbcType=INTEGER},
+      userID = #{userID,jdbcType=VARCHAR},
+      filePath = #{filePath,jdbcType=VARCHAR},
+      fileSize = #{fileSize,jdbcType=BIGINT},
+      floorNum = #{floorNum,jdbcType=INTEGER},
+      folderID = #{folderID,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      isDelete = #{isDelete,jdbcType=INTEGER},
+      md5 = #{md5,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

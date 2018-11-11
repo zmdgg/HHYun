@@ -1,0 +1,46 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Viewer.js</title>
+</head>
+
+<style type="text/css"> 
+ /*遮罩层 begin 2016-6-14 13:22:20*/
+.floatLayer{ width:100%; height:100%; position:fixed; background:#000;  z-index:9990; top:0px; left:0px;filter:alpha(Opacity=80);-moz-opacity:0.80;opacity: 0.80;}
+.liadloging{ width: 300px;/*弹出框大小*/
+        height: 300px;
+        position: fixed;/*固定在屏幕正中间*/
+        top: 50%;
+        left: 50%;
+        margin-top: -150px;/*高的一半*/
+        margin-left: -150px;/*宽的一半*/
+	 z-index:9995;  }
+.ldl_Conten{ width:500px; height:100px; line-height:100px; overflow:hidden; text-align:center; }
+.ldl_Conten img{ width:60px;   height:20px; line-height:100px;display:block; float:left; margin:39px 5px; background-size:60px 20px; filter:chroma(color=#ffffff);}
+.ldl_Conten p{ width:auto; height:auto; font-size:20px;   height:100px; line-height:100px; color:#ccc; display:block; float:left;}
+/*遮罩层 begin*/
+
+
+</style> 
+
+<!--加载的gif图片和提示文字-->
+<div class="liadloging">
+    <div class="ldl_Conten">
+        <img src="img/myloading.gif"/>
+        <p>加载中请稍等......</p>
+    </div>
+</div>
+
+
+<!--灰色遮罩层 begin-->
+
+<div class="floatLayer"></div> 
+
+<!--灰色遮罩层 end-->
+
+</body>
+</html>

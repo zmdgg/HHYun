@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.hhy.mapper.FolderMapper">
+  <resultMap id="BaseResultMap" type="main.java.com.hhy.pojo.Folder">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="folderName" jdbcType="VARCHAR" property="folderName" />
+    <result column="userID" jdbcType="VARCHAR" property="userID" />
+    <result column="updateDate" jdbcType="TIMESTAMP" property="updateDate" />
+    <result column="superFolderID" jdbcType="VARCHAR" property="superFolderID" />
+    <result column="isDelete" jdbcType="INTEGER" property="isDelete" />
+  </resultMap>
+  <!-- 自定义 -->
+  <resultMap type="main.java.com.hhy.pojo.FolderTree" id="foldertreeMap">
+		<!-- id标签：映射主键属性 property属性：实体的属性名 column属性：表的字段名 -->
+		<id property="folderID" column="id" />
+		<result property="folderName" column="folderName" />
+	</resultMap>
+  <sql id="Base_Column_List">
+    id, folderName, userID, updateDate, superFolderID, isDelete
+  </sql>
+  <!-- 根据条件查找文件夹 -->
+	<select id="getAllFolder" parameterType="map" resultMap="foldertreeMap">
+		select id,folderName from folder
+		<where>
+			<if test="userID != null">
+				and userID = #{userID}
+			</if>
+			<if test="superFolderID == null">
+				and superFolderID = ''
+			</if>
+			<if test="superFolderID != null">
+				and superFolderID =#{superFolderID}
+			</if>
+			<if test="isDelete != null">
+				and isDelete =#{isDelete}
+			</if>
+		</where>
+		ORDER BY updateDate DESC
+	</select>
+  	<!-- 获得文件夹列表,按名字排序 -->
+  <select id="getFolderList" resultType="Folder">
+     select * from folder where  superFolderID=#{0} and isDelete=#{1} and userID=#{2} order by folderName
+  </select> 
+   <!-- 获得文件夹列表,按名字排序 -->
+  <select id="getFolderNext" resultType="Folder">
+     select * from folder where  superFolderID=#{0} and isDelete="0" order by folderName
+  </select> 
+  
+	<!-- 文件夹放入回收站 -->
+  <update id="layFolderRecycle" parameterType="main.java.com.hhy.pojo.Folder">
+    update folder
+    set isDelete = "1"
+    where id = #{0}
+  </update>
+  	<!-- 文件夹放入回收站 -->
+  <update id="updateCatereid" parameterType="String">
+    update folder
+    set superFolderID =  #{1}
+    where id = #{0}
+  </update>
+
+  	<!-- 查找一个文件夹所有信息 区分是否已经回收-->
+	<select id="get" parameterType="map" resultType="Folder">
+		select * from
+		folder where id = #{cat_id}
+		<if test="cat_state != null">
+			 and isDelete=#{cat_state}
+		</if>
+	</select>
+    <!-- 文件夹重命名 -->
+  <update id="reName" parameterType="main.java.com.hhy.pojo.Folder">
+    update folder
+    set folderName = #{1}
+    where id = #{0}
+  </update>
+   <!--文件夹批量放入回收站 -->
+  <update id="batchLayFolder" parameterType="map">
+    update myfile set isDelete = #{folder_deletesign} where id in
+		<foreach collection="list" index="index" item="folder_id" open="(" separator="," close=")" >    
+            #{folder_id}    
+        </foreach>  
+  </update>
+  <!-- 根据父级文件夹的id查找子级文件夹id -->
+	<select id="findFolderIDBySuperID" parameterType="map" resultType="string">
+		select id from folder
+		<where>
+			<if test="superFolderID == null">
+				and superFolderID = ''
+			</if>
+			<if test="superFolderID != null">
+				and superFolderID =#{superFolderID}
+			</if>
+			<if test="state != null">
+				and isDelete =#{state}
+			</if>
+		</where>
+	</select>
+	<!-- 修改文件夹名称或者是否进入回收站 -->
+	<update id="updateFolder" parameterType="map">
+		update folder
+		<set>
+			<if test=" folderName != null">
+				folderName= #{folderName},
+			</if>
+			<if test=" state != null">
+				isDelete= #{state},
+			</if>
+		</set>
+		where id = #{id}
+	</update>
+	<!-- 获得文件夹列表,根据是否在回收站-->
+  	<select id="getFolderListByIsDelete" resultType="Folder">
+        select * from folder where isDelete=#{0} and userID=#{1}
+	</select> 
+		<!-- 获得文件夹回收站-->
+  	<select id="getRecycleByID" resultType="Folder">
+        select * from folder where isDelete=#{1} and id=#{0} limit 1
+	</select> 
+	
+	<!-- 获得文件夹 根据是否在回收站-->
+  	<select id="getFolderByIsDelete" resultType="Folder">
+        select * from folder where isDelete=#{0} and id=#{1} limit 1
+	</select> 
+  <!-- 文件放入回收站 -->
+  <update id="updateIsDelete" parameterType="Folder">
+    update folder
+    set isDelete = #{1}
+    where id = #{0}
+  </update>
+    <update id="getRecylceCategorie" parameterType="Folder">
+    update folder
+    set superFolderID = #{1}
+    where id = #{0}
+  </update>
+  
+  <!-- 根据条件查找文件夹 -->
+	<select id="findAllCate" parameterType="map" resultType="Folder">
+		select * from folder
+		<where>
+			<if test="cat_uid != null">
+				and userID = #{cat_uid}
+			</if>
+			<if test="cat_reid == null">
+				and superFolderID = ''
+			</if>
+			<if test="cat_reid != null">
+				and superFolderID =#{cat_reid}
+			</if>
+			<if test="cat_state != null">
+				and isDelete =#{cat_state}
+			</if>
+		</where>
+	</select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from folder
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from folder
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="main.java.com.hhy.pojo.Folder">
+    insert into folder (id, folderName, userID, 
+      updateDate, superFolderID, isDelete
+      )
+    values (#{id,jdbcType=VARCHAR}, #{folderName,jdbcType=VARCHAR}, #{userID,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{superFolderID,jdbcType=VARCHAR}, #{isDelete,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.hhy.pojo.Folder">
+    insert into folder
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="folderName != null">
+        folderName,
+      </if>
+      <if test="userID != null">
+        userID,
+      </if>
+      <if test="updateDate != null">
+        updateDate,
+      </if>
+      <if test="superFolderID != null">
+        superFolderID,
+      </if>
+      <if test="isDelete != null">
+        isDelete,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="folderName != null">
+        #{folderName,jdbcType=VARCHAR},
+      </if>
+      <if test="userID != null">
+        #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superFolderID != null">
+        #{superFolderID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        #{isDelete,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.hhy.pojo.Folder">
+    update folder
+    <set>
+      <if test="folderName != null">
+        folderName = #{folderName,jdbcType=VARCHAR},
+      </if>
+      <if test="userID != null">
+        userID = #{userID,jdbcType=VARCHAR},
+      </if>
+      <if test="updateDate != null">
+        updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="superFolderID != null">
+        superFolderID = #{superFolderID,jdbcType=VARCHAR},
+      </if>
+      <if test="isDelete != null">
+        isDelete = #{isDelete,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.hhy.pojo.Folder">
+    update folder
+    set folderName = #{folderName,jdbcType=VARCHAR},
+      userID = #{userID,jdbcType=VARCHAR},
+      updateDate = #{updateDate,jdbcType=TIMESTAMP},
+      superFolderID = #{superFolderID,jdbcType=VARCHAR},
+      isDelete = #{isDelete,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

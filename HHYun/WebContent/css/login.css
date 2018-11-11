@@ -1,0 +1,200 @@
+.logo{
+   position: absolute;
+    left: 26px;
+    top:15px;
+}
+.logo span
+{
+	font-size:23px;
+	color:white;
+	padding-left: 5px;
+	
+}
+.body-content{
+	font-size:44px;
+	color:#FFFFFF;
+	position: absolute;
+    left: 250px;
+    top:360px;
+}
+.carousel-inner a:hover img{
+	/*-webkit-transform:scale(1.2,);
+    -moz-transform:scale(1.2,1.2);*/
+    transform:scale(1.1,1.1);
+}
+
+
+#login-middle
+{
+	height: 400px;
+	width: 350px;
+	border: 1px solid white;
+	position: absolute;
+	left: 850px;
+	top:150px;
+	background-color: white;
+	box-shadow: 1px 1px 0px gainsboro;
+	border-radius:3px;
+}
+#register-middle
+{
+	height: 400px;
+	width: 350px;
+	border: 1px solid white;
+	position: absolute;
+	left: 850px;
+	top:150px;
+	background-color: white;
+	box-shadow: 1px 1px 0px gainsboro;
+	border-radius:3px;
+}
+.login_title
+{
+	height: 60px;
+	text-align: center;
+	margin-top: 30px;
+}
+.login_form
+{
+	padding-left: 25px;
+	height: 240px;
+	width: 350px;
+	
+}
+.form_user input
+{
+	border-radius: 4px;
+	height: 30px;
+	width: 300px;
+	border: 1px solid #cccccc; 
+  
+   
+   
+	
+}
+.form_user input:focus
+{
+	border-color: #66afe9; 
+    outline: 0; 
+}
+.form_password input
+{
+    border-radius: 4px;
+    margin-top: 25px;
+	height: 30px;
+	width: 300px;
+	border: 1px solid #cccccc; 
+}
+.form_password input:focus
+{
+	border-color: #66afe9; 
+    outline: 0; 
+}
+.form_check
+{
+	margin-top: 30px;
+}
+
+.form_login input
+{
+	margin-top: 20px;
+	height: 35px;
+	width: 300px;
+	color: white;
+	font: 15px "微软雅黑" bold;
+	background-color: #5d98f9;
+	border: 1px solid #cccccc; 
+	border-radius: 4px;
+}
+.form_register input
+{
+	margin-top: 15px;
+	height: 35px;
+	width: 135px;
+	color: white;
+	font: 15px "微软雅黑" bold;
+	background-color: #5d98f9;
+	border: 1px solid #cccccc; 
+	border-radius: 4px;
+}
+.form_href
+{
+	float: left;
+	margin-top: 13px;
+	font: 13px "agency fb" ;
+	
+}
+.form_href a
+{
+	text-decoration: none;
+}
+#number
+{
+	
+	margin-left: 160px;
+}
+#number a:hover
+{
+	color: lightskyblue;
+}
+#question a
+{
+	color: gray;
+}
+#question a:hover
+{
+	color: lightgray;
+}
+.login_bottom
+{
+	
+	height:59px;
+	
+	background-color: #F3F8FF;
+}
+
+.bottom_href img:hover
+{
+	opacity: 0.5;
+}
+.bottom_href ul
+{
+	list-style: none;
+}
+.bottom_href ul li
+{
+	float: left;
+	padding-right: 25px;
+	padding-top: 19px;
+}
+.bottom_href ul li a
+{
+	text-decoration: none;
+}
+.bottom_href ul li img
+{
+	
+	height: 25px;
+	width: 25px;
+	border-left: ;
+}
+
+.bottom_href input
+{
+	height: 25px;
+	width: 70px;
+	background-color: transparent;
+	border-radius: 4px;
+	color: dodgerblue;
+	border: 1px solid #cccccc; 
+}
+.bottom_href #scan_login a
+{
+	border: 1px solid red;
+}
+
+#scan_login
+{
+	border: 0;
+	width:77px;
+}

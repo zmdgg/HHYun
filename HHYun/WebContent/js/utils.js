@@ -1,0 +1,124 @@
+
+//判断文件类型
+function judgeFileType(fileSuffix) { 
+	var type;
+	//alert(111)
+	switch(fileSuffix){
+		case("zip"):
+		case("rar"):
+		case("7z"):
+			type="img/filepic/ZIP_2.png";
+		break;
+		case("mp4"):
+		case("rmvb"):
+		case("avi"):
+		case("mkv"):	
+		case("wmv"):
+		case("3gp"):	
+		case("mov"):
+			type="img/filepic/video.png";
+		break;
+		case("png"):
+		case("jpg"):
+			type="img/filepic/pic.png";
+		break;
+		case("gif"):
+		case("bmp"):
+		case("psd"):
+		case("ai"):
+		case("svg"):
+			type="img/filepic/picture1.png";
+		break;
+		case("doc"):
+		case("docx"):
+			type="img/filepic/word.png";
+		break;
+		case("txt"):
+			type="img/filepic/text.png";
+		break;
+		case("xls"):
+		case("xlsx"):
+			type="img/filepic/xls.png";
+		break;
+		case("pdf"):
+			type="img/filepic/pdf.png";
+		break;
+		case("ppt"):
+		case("pptx"):
+			type="img/filepic/ppt.png";
+		break;
+		case("html"):
+			type="img/filepic/html.png";
+		break;
+		case("mp3"):
+		case("wav"):
+		case("mod"):	
+			type="img/filepic/music.png";
+		break;
+		default:
+			type="img/filepic/others.png";
+	}
+	return type; 
+}
+//判断文件类型
+function judgeGridFileType(fileSuffix,userID,id) { 
+	var type;
+	//alert(111)
+	switch(fileSuffix){
+		case("zip"):
+		case("rar"):
+		case("7z"):
+			type="img/gridpic/zip.png";
+		break;
+		case("mp4"):
+		case("rmvb"):
+		case("avi"):
+		case("mkv"):	
+		case("wmv"):
+		case("3gp"):	
+		case("mov"):
+			//type="img/gridpic/video.png";
+			type="../disk/"+userID+"/"+id+".jpg";
+		break;
+		case("png"):
+		case("jpg"):
+			type="../disk/"+userID+"/"+id+"."+fileSuffix;
+		break;
+		case("gif"):
+		case("bmp"):
+		case("psd"):
+		case("ai"):
+		case("svg"):
+			type="img/gridpic/picture1.png";
+		break;
+		case("doc"):
+		case("docx"):
+			type="img/gridpic/word.png";
+		break;
+		case("txt"):
+			type="img/gridpic/text.png";
+		break;
+		case("xls"):
+		case("xlsx"):
+			type="img/gridpic/xls.png";
+		break;
+		case("pdf"):
+			type="img/gridpic/pdf.png";
+		break;
+		case("ppt"):
+		case("pptx"):
+			type="img/gridpic/ppt.png";
+		break;
+		case("html"):
+			type="img/gridpic/html.png";
+		break;
+		case("mp3"):
+		case("wav"):
+		case("mod"):	
+			type="img/gridpic/music.png";
+		break;
+		default:
+			type="img/gridpic/others.png";
+	}
+	return type; 
+}

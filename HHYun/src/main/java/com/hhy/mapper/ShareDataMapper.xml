@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="main.java.com.hhy.mapper.ShareDataMapper">
+  <resultMap id="BaseResultMap" type="main.java.com.hhy.pojo.ShareData">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="magid" jdbcType="VARCHAR" property="magid" />
+    <result column="fileOrFolderID" jdbcType="VARCHAR" property="fileOrFolderID" />
+    <result column="isFolder" jdbcType="INTEGER" property="isFolder" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, magid, fileOrFolderID, isFolder
+  </sql>
+  
+  <!-- 获得文件夹列表,按名字排序 -->
+  <select id="getShareDataList" resultType="ShareData">
+     select * from shareData where  magid=#{0}
+  </select> 
+  
+
+  
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from sharedata
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from sharedata
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+    <delete id="cancleShare" parameterType="main.java.com.hhy.pojo.ShareData">
+    delete from sharedata
+    where magid = #{magid,jdbcType=VARCHAR} and fileOrFolderID=#{fileOrFolderID}
+  </delete>
+  
+  <insert id="insert" parameterType="main.java.com.hhy.pojo.ShareData">
+    insert into sharedata (id, magid, fileOrFolderID, 
+      isFolder)
+    values (#{id,jdbcType=VARCHAR}, #{magid,jdbcType=VARCHAR}, #{fileOrFolderID,jdbcType=VARCHAR}, 
+      #{isFolder,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="main.java.com.hhy.pojo.ShareData">
+    insert into sharedata
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="magid != null">
+        magid,
+      </if>
+      <if test="fileOrFolderID != null">
+        fileOrFolderID,
+      </if>
+      <if test="isFolder != null">
+        isFolder,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="magid != null">
+        #{magid,jdbcType=VARCHAR},
+      </if>
+      <if test="fileOrFolderID != null">
+        #{fileOrFolderID,jdbcType=VARCHAR},
+      </if>
+      <if test="isFolder != null">
+        #{isFolder,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="main.java.com.hhy.pojo.ShareData">
+    update sharedata
+    <set>
+      <if test="magid != null">
+        magid = #{magid,jdbcType=VARCHAR},
+      </if>
+      <if test="fileOrFolderID != null">
+        fileOrFolderID = #{fileOrFolderID,jdbcType=VARCHAR},
+      </if>
+      <if test="isFolder != null">
+        isFolder = #{isFolder,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="main.java.com.hhy.pojo.ShareData">
+    update sharedata
+    set magid = #{magid,jdbcType=VARCHAR},
+      fileOrFolderID = #{fileOrFolderID,jdbcType=VARCHAR},
+      isFolder = #{isFolder,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>
